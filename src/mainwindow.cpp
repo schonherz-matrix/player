@@ -109,16 +109,19 @@ void MainWindow::stateChanged(QMediaPlayer::State state) {
 
 void MainWindow::on_prevButton_clicked() {
   if (m_mediaPlayList.playbackMode() == QMediaPlaylist::CurrentItemOnce)
-    m_mediaPlayList.setCurrentIndex(m_currentItem - 1);
+    m_mediaPlayList.setCurrentIndex(m_currentItemIdx - 1);
   else
     m_mediaPlayList.previous();
 }
 
-void MainWindow::on_stopButton_clicked() { m_mediaPlayer.stop(); }
+void MainWindow::on_stopButton_clicked() {
+  m_mediaPlayer.stop();
+  m_mediaPlayList.setCurrentIndex(-1);
+}
 
 void MainWindow::on_nextButton_clicked() {
   if (m_mediaPlayList.playbackMode() == QMediaPlaylist::CurrentItemOnce)
-    m_mediaPlayList.setCurrentIndex(m_currentItem + 1);
+    m_mediaPlayList.setCurrentIndex(m_currentItemIdx + 1);
   else
     m_mediaPlayList.next();
 }
@@ -142,6 +145,9 @@ void MainWindow::on_removeButton_clicked() {
   if (m_mediaPlayer.state() == m_mediaPlayer.PlayingState) m_mediaPlayer.stop();
 
   for (auto i : ui->playList->selectedItems()) {
+    if (m_currentItem == i) m_currentItem = nullptr;
+
+    m_mediaPlayList.removeMedia(ui->playList->row(i));
     delete i;
   }
 }
@@ -149,19 +155,26 @@ void MainWindow::on_removeButton_clicked() {
 void MainWindow::on_clearButton_clicked() {
   if (m_mediaPlayer.state() == m_mediaPlayer.PlayingState) m_mediaPlayer.stop();
 
+  m_currentItem = nullptr;
   m_mediaPlayList.clear();
   ui->playList->clear();
 }
 
 void MainWindow::currentIndexChanged(int position) {
   auto font = QFont();
-  ui->playList->item(m_currentItem)->setFont(font);
+
+  if (m_currentItem) m_currentItem->setFont(font);
 
   if (position >= 0) {
-    font.setBold(true);
-    ui->playList->item(position)->setFont(font);
+    auto item = ui->playList->item(position);
 
-    m_currentItem = position;
+    if (item) {
+      font.setBold(true);
+      item->setFont(font);
+
+      m_currentItem = item;
+      m_currentItemIdx = position;
+    }
   }
 }
 

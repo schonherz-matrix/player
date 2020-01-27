@@ -60,7 +60,8 @@ class MainWindow : public QMainWindow {
   VideoSurface m_surface{this};
   QMediaPlaylist m_mediaPlayList{this};
   QMediaPlayer m_mediaPlayer{this};
-  int m_currentItem = 0;
+  QListWidgetItem *m_currentItem{nullptr};
+  int m_currentItemIdx{-1};
 };
 
 #endif  // MAINWINDOW_H
