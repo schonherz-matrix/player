@@ -1,3 +1,12 @@
+# Ignore all
+*
+
+# Unignore all with extensions
+!*.*
+
+# Unignore all dirs
+!*/
+
 # C++ objects and libs
 *.slo
 *.lo
@@ -51,6 +60,8 @@ compile_commands.json
 # QtCreator local machine specific files for imported projects
 *creator.user*
 
-# Debug and release
+# debug, release
 debug/
 release/
+
+build
