@@ -5,6 +5,7 @@
 #include <QMainWindow>
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
+
 #include "videosurface.h"
 
 QT_BEGIN_NAMESPACE
