@@ -4,6 +4,7 @@
 #include <QAbstractVideoSurface>
 #include <QImage>
 #include <QLabel>
+
 #include "muebtransmitter.h"
 
 class VideoSurface : public QAbstractVideoSurface {
@@ -21,7 +22,7 @@ class VideoSurface : public QAbstractVideoSurface {
   void setVideoWidget(QLabel *videoWidget);
 
  private:
-  MuebTransmitter m_transmitter{this};
+  MuebTransmitter &m_transmitter{MuebTransmitter::getInstance()};
   QLabel *m_videoWidget{nullptr};
 };
 
