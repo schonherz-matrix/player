@@ -183,5 +183,5 @@ void MainWindow::itemDoubleClicked(QListWidgetItem* item) {
 }
 
 void MainWindow::currentMediaChanged(const QMediaContent& content) {
-  setWindowFilePath(content.canonicalUrl().toLocalFile());
+  setWindowFilePath(content.request().url().fileName());
 }
