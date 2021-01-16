@@ -25,8 +25,9 @@ find_package(
 find_package(libmueb 2.0 REQUIRED)
 
 add_executable(
-  ${PROJECT_NAME} src/main.cpp src/mainwindow.cpp src/mainwindow.h
-                  src/mainwindow.ui src/videosurface.cpp src/videosurface.h)
+  ${PROJECT_NAME} WIN32
+  src/main.cpp src/mainwindow.cpp src/mainwindow.h src/mainwindow.ui
+  src/videosurface.cpp src/videosurface.h)
 target_link_libraries(
   ${PROJECT_NAME} PRIVATE Qt5::Widgets Qt5::MultimediaWidgets
                           libmueb::muebtransmitter)
