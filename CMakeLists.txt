@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 project(
-  matrix-player
+  player
   DESCRIPTION "Schönherz Mátrix animation player for mp4"
   HOMEPAGE_URL "kszk.bme.hu"
   LANGUAGES CXX)
