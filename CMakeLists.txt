@@ -22,7 +22,9 @@ find_package(
   COMPONENTS Widgets MultimediaWidgets
   REQUIRED)
 
-find_package(libmueb 2.0 REQUIRED)
+if(NOT DEFINED MATRIX_SIMPLE)
+  find_package(libmueb 2.0 REQUIRED)
+endif()
 
 add_executable(
   ${PROJECT_NAME} WIN32
