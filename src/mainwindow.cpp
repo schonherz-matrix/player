@@ -135,7 +135,7 @@ void MainWindow::on_timeSlider_sliderMoved(int position) {
 void MainWindow::on_addButton_clicked() {
   auto files =
       QFileDialog::getOpenFileUrls(this, tr("Open Animations"), QUrl(),
-                                   tr("Animations *.mp4, *.webm"), nullptr);
+                                   tr("Animations (*.mp4 *.webm)"), nullptr);
 
   for (const auto& file : files) {
     m_mediaPlayList.addMedia(file);
